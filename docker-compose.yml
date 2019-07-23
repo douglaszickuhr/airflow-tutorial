@@ -15,7 +15,7 @@ services:
       context: https://github.com/puckel/docker-airflow.git#1.10.1
       dockerfile: Dockerfile
       args:
-        AIRFLOW_DEPS: gcp_api,s3        
+        AIRFLOW_DEPS: gcp_api,s3
     restart: always
     depends_on:
       - postgres
@@ -24,9 +24,8 @@ services:
       - EXECUTOR=Local
       - FERNET_KEY=jsDPRErfv8Z_eVTnGfF8ywd19j4pyqE3NpdUBA_oRTo=
     volumes:
-      - /Users/douglaszickuhr/Airflow/dags:/usr/local/airflow/dags
-      # Uncomment to include custom plugins
-      - /Users/douglaszickuhr/Airflow/plugins:/usr/local/airflow/plugins
+      - ./dags:/usr/local/airflow/dags
+      #- ./plugins:/usr/local/airflow/plugins
     ports:
       - "8080:8080"
     command: webserver
